@@ -1,11 +1,11 @@
 ﻿class Program
 {
     static void Main()
-    {
+    {   
         var wizard = new Wizard("Kasper");
         var archer = new Archer("Jacob");
         var swashbuckler = new Swashbuckler("Marcus");
-        var barbarian = new Barbarian("Dean");
+        var barbarian = new Barbarian("");
 
         wizard.Display();
         archer.Display();

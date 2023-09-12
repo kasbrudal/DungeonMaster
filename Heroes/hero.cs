@@ -1,11 +1,12 @@
-﻿using System;
+﻿using DungeonMaster.Heroes;
+using System;
 using System.Collections.Generic;
 
 public class Hero
 {
     public string Name { get; set; }
     public int Level { get; set; }
-    public Dictionary<string, int> LevelAttributes { get; set; }
+    public TotalAttributes LevelAttributes { get; set; }
     public List<string> Equipment { get; set; }
     public List<string> ValidWeaponTypes { get; protected set; }
     public List<string> ValidArmorTypes { get; protected set; }
@@ -14,16 +15,11 @@ public class Hero
     {
         Name = name;
         Level = 1;
-        LevelAttributes = new Dictionary<string, int>
-        {
-            { "Strength", 0 },
-            { "Dexterity", 0 },
-            { "Intelligence", 0 }
-        };
+        LevelAttributes = new TotalAttributes(0, 0, 0);
         Equipment = new List<string>();
     }
 
-    public void LevelUp()
+    public virtual void LevelUp()
     {
         Level++;
     }
@@ -33,28 +29,25 @@ public class Hero
         Equipment.Add(item);
     }
 
-    
 
-    public Dictionary<string, int> TotalAttributes()
-    {
-        return LevelAttributes;
-    }
+
+
 
     public virtual void Display()
     {
         Console.WriteLine($"Name: {Name}");
         Console.WriteLine($"Level: {Level}");
-        Console.WriteLine("Attributes:");
-        foreach (var kvp in LevelAttributes)
-        {
-            Console.WriteLine($"{kvp.Key}: {kvp.Value}");
-        }
-        Console.WriteLine("Equipment:");
+        Console.WriteLine($"Attributes:");
+        Console.WriteLine($"Strength: {LevelAttributes.Strength}");
+        Console.WriteLine($"Dexterity: {LevelAttributes.Dexterity}");
+        Console.WriteLine($"Intelligence: {LevelAttributes.Intelligence}");
+        Console.WriteLine($"Equipment:");
         foreach (var item in Equipment)
         {
             Console.WriteLine(item);
         }
     }
+
 }
 
 public class Wizard : Hero
@@ -63,12 +56,19 @@ public class Wizard : Hero
     {
         ValidWeaponTypes = new List<string> { "Staff", "Wand" };
         ValidArmorTypes = new List<string> { "Cloth" };
+        LevelAttributes = new TotalAttributes(1, 1, 8);
+
     }
 
     public override void Display()
     {
         Console.WriteLine("Wizard:");
         base.Display();
+    }
+    public override void LevelUp()
+    {
+        base.LevelUp();
+        LevelAttributes.Increase(1, 1, 5);
     }
 }
 
@@ -78,8 +78,13 @@ public class Archer : Hero
     {
         ValidWeaponTypes = new List<string> { "Bow" };
         ValidArmorTypes = new List<string> { "Leather", "Mail" };
+        LevelAttributes = new TotalAttributes(1, 7, 1);
     }
-
+    public override void LevelUp()
+    {
+        base.LevelUp();
+        LevelAttributes.Increase(1, 5, 1);
+    }
     public override void Display()
     {
         Console.WriteLine("Archer:");
@@ -93,8 +98,13 @@ public class Swashbuckler : Hero
     {
         ValidWeaponTypes = new List<string> { "Sword", "Dagger" };
         ValidArmorTypes = new List<string> { "Leather", "Mail" };
+        LevelAttributes = new TotalAttributes(2, 6, 1);
     }
-
+    public override void LevelUp()
+    {
+        base.LevelUp();
+        LevelAttributes.Increase(1, 4, 1);
+    }
     public override void Display()
     {
         Console.WriteLine("Swashbuckler:");
@@ -108,8 +118,14 @@ public class Barbarian : Hero
     {
         ValidWeaponTypes = new List<string> { "Hatchet", "Mace", "Sword" };
         ValidArmorTypes = new List<string> { "Plate", "Mail" };
+        LevelAttributes = new TotalAttributes(5, 2, 1);
     }
 
+    public override void LevelUp()
+    {
+        base.LevelUp();
+        LevelAttributes.Increase(3, 2, 1);
+    }
     public override void Display()
     {
         Console.WriteLine("Barbarian:");
