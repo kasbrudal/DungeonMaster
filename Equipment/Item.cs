@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DungeonMaster.Heroes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,6 +25,9 @@ namespace DungeonMaster.Equipment
             return hero.Level >= RequiredLevel;
         }
     }
+
+
+
     public enum Slot
     {
         Weapon,
@@ -31,14 +35,31 @@ namespace DungeonMaster.Equipment
         Body, 
         Legs
     }
-    public enum Armor
+    public enum ArmorTypes   
     {
         Cloth, 
         Leather,
         Mail,
         Plate
     }
-    public enum Weapon
+
+    public class Armor : Item
+    {
+        public ArmorTypes armorTypes { get; set;}
+        public TotalAttributes ArmorAttribute { get; set;}
+
+        public Armor(string name, int requiredLevel, ArmorTypes armorTypes, TotalAttributes armorAttribute) 
+            :base(name, requiredLevel, GetArmorSlot(armorTypes))
+        {
+            ArmorTypes = armorTypes;
+            ArmorAttribute = armorAttribute;
+        }
+        private static Slot GetArmorSlot(ArmorTypes armorTypes)
+        {
+
+        }
+    }
+    public enum WeaponTypes
     {
         Hatchet, 
         Bow,
@@ -48,4 +69,17 @@ namespace DungeonMaster.Equipment
         Sword,
         Wand
     }
+
+    public class Weapon : Item
+    {
+        public WeaponTypes weaponTypes { get; }
+        public int WeaponDamage { get; }
+
+        public Weapon(string name, int requiredLevel, WeaponTypes weaponTypes, int weaponDamage) : 
+                        base (name, requiredLevel, Slot.Weapon)
+        {
+            WeaponTypes = weaponTypes;
+            WeaponDamage = weaponDamage;
+        }
+
 }
