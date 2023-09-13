@@ -35,18 +35,12 @@ namespace DungeonMaster.Equipment
         Body, 
         Legs
     }
-    public enum ArmorTypes   
-    {
-        Cloth, 
-        Leather,
-        Mail,
-        Plate
-    }
 
     public class Armor : Item
     {
         public ArmorTypes armorTypes { get; set;}
         public TotalAttributes ArmorAttribute { get; set;}
+        public object Armor { get; internal set; }
 
         public Armor(string name, int requiredLevel, ArmorTypes armorTypes, TotalAttributes armorAttribute) 
             :base(name, requiredLevel, GetArmorSlot(armorTypes))
@@ -59,21 +53,12 @@ namespace DungeonMaster.Equipment
 
         }
     }
-    public enum WeaponTypes
-    {
-        Hatchet, 
-        Bow,
-        Dagger,
-        Mace,
-        Staff,
-        Sword,
-        Wand
-    }
 
     public class Weapon : Item
     {
         public WeaponTypes weaponTypes { get; }
         public int WeaponDamage { get; }
+        public WeaponTypes WeaponTypes { get; internal set; }
 
         public Weapon(string name, int requiredLevel, WeaponTypes weaponTypes, int weaponDamage) : 
                         base (name, requiredLevel, Slot.Weapon)

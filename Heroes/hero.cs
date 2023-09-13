@@ -1,4 +1,5 @@
-﻿using DungeonMaster.Heroes;
+﻿using DungeonMaster.Equipment;
+using DungeonMaster.Heroes;
 using System;
 using System.Collections.Generic;
 
@@ -29,6 +30,25 @@ public class Hero
         Equipment.Add(item);
     }
 
+    public TotalAttributes CalculateTotalAttributes()
+    {
+        TotalAttributes totalAttributes = new TotalAttributes();
+
+        totalAttributes.Strength += LevelAttributes.Strength;
+        totalAttributes.Dexterity += LevelAttributes.Dexterity;
+        totalAttributes.Intelligence += LevelAttributes.Intelligence;
+
+        foreach(var slot in new[] {Slot.Head, Slot.Body, Slot.Legs})
+        {
+            if(Equipment.ContainsKey(slot) && Equipment[slot] is Armor armor)
+            {
+                totalAttributes.Strength += armor.ArmorAttributes.Strength;
+                totalAttributes.Dexterity += armor.ArmorAttributes.Dexterity;
+                totalAttributes.Intelligence += armor.ArmorAttributes.Intelligence;
+            }
+        }
+        return totalAttributes;
+    }
 
 
 
@@ -48,89 +68,6 @@ public class Hero
         }
     }
 
-}
-
-public class Wizard : Hero
-{
-    public Wizard(string name) : base(name)
-    {
-        ValidWeaponTypes = new List<string> { "Staff", "Wand" };
-        ValidArmorTypes = new List<string> { "Cloth" };
-        LevelAttributes = new TotalAttributes(1, 1, 8);
-
-    }
-
-    public override void Display()
-    {
-        Console.WriteLine("Wizard:");
-        base.Display();
-    }
-    public override void LevelUp()
-    {
-        base.LevelUp();
-        LevelAttributes.Increase(1, 1, 5);
-    }
-}
-
-public class Archer : Hero
-{
-    public Archer(string name) : base(name)
-    {
-        ValidWeaponTypes = new List<string> { "Bow" };
-        ValidArmorTypes = new List<string> { "Leather", "Mail" };
-        LevelAttributes = new TotalAttributes(1, 7, 1);
-    }
-    public override void LevelUp()
-    {
-        base.LevelUp();
-        LevelAttributes.Increase(1, 5, 1);
-    }
-    public override void Display()
-    {
-        Console.WriteLine("Archer:");
-        base.Display();
-    }
-}
-
-public class Swashbuckler : Hero
-{
-    public Swashbuckler(string name) : base(name)
-    {
-        ValidWeaponTypes = new List<string> { "Sword", "Dagger" };
-        ValidArmorTypes = new List<string> { "Leather", "Mail" };
-        LevelAttributes = new TotalAttributes(2, 6, 1);
-    }
-    public override void LevelUp()
-    {
-        base.LevelUp();
-        LevelAttributes.Increase(1, 4, 1);
-    }
-    public override void Display()
-    {
-        Console.WriteLine("Swashbuckler:");
-        base.Display();
-    }
-}
-
-public class Barbarian : Hero
-{
-    public Barbarian(string name) : base(name)
-    {
-        ValidWeaponTypes = new List<string> { "Hatchet", "Mace", "Sword" };
-        ValidArmorTypes = new List<string> { "Plate", "Mail" };
-        LevelAttributes = new TotalAttributes(5, 2, 1);
-    }
-
-    public override void LevelUp()
-    {
-        base.LevelUp();
-        LevelAttributes.Increase(3, 2, 1);
-    }
-    public override void Display()
-    {
-        Console.WriteLine("Barbarian:");
-        base.Display();
-    }
 }
 
 
