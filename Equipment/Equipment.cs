@@ -27,33 +27,35 @@ namespace DungeonMaster.Equipment
             };
         }
 
-        /*
+
         public void canEquipWeapon(Weapon weapon)
         {
-            if(hero is Wizard && weapon.WeaponTypes!= WeaponTypes.Staff && weapon.WeaponTypes != WeaponTypes.Wand)
+            if (hero is Wizard)
             {
-                throw new InvalidWeaponException("Wizard can only use Staff or Wand");
-            }
-            else if (hero is Archer && weapon.WeaponTypes != WeaponTypes.Bow)
-            {
-                throw new InvalidWeaponException("Archers can only use Bow.");
-            }
-            else if (hero is Swashbuckler && (weapon.WeaponTypes != WeaponTypes.Dagger && weapon.WeaponTypes != WeaponTypes.Sword))
-            {
-                throw new InvalidWeaponException("Swashbucklers can only use Dagger or Sword.");
-            }
-            else if (hero is Barbarian && (weapon.WeaponTypes != WeaponTypes.Hatchet && weapon.WeaponTypes != WeaponTypes.Mace && weapon.WeaponTypes != WeaponTypes.Sword))
-            {
-                throw new InvalidWeaponException("Barbarians can only use Hatchet, Mace, or Sword.");
+                if (weapon.WeaponType != Weapon.WeaponTypes.Staff && weapon.WeaponType != Weapon.WeaponTypes.Wand)
+                {
+                    throw new InvalidWeaponException("Wizards can only use Staff or Wand.");
+                }
             }
 
-            if (!weapon.equipItem(hero))
+            if (weapon.RequiredLevel > hero.Level)
             {
-                throw new InvalidWeaponException("The item cannot be equiped because of your level");
+                throw new InvalidWeaponException("The weapon's level requirement is too high for your hero's level.");
             }
 
             equipment[Slot.Weapon] = weapon;
         }
+        public Weapon GetEquippedWeapon()
+        {
+            if (equipment.ContainsKey(Slot.Weapon) && equipment[Slot.Weapon] is Weapon equippedWeapon)
+            {
+                return equippedWeapon;
+            }
+
+            return null;
+        }
+
+        /*
         public void canEquipArmor(Armor armor)
         {
             if (hero is Wizard && armor.Armor != Armor.Cloth)
@@ -103,22 +105,13 @@ namespace DungeonMaster.Equipment
     }
 
     [Serializable]
-    internal class InvalidWeaponException : Exception
+    public class InvalidWeaponException : Exception
     {
-        public InvalidWeaponException()
-        {
-        }
-
-        public InvalidWeaponException(string? message) : base(message)
-        {
-        }
-
-        public InvalidWeaponException(string? message, Exception? innerException) : base(message, innerException)
-        {
-        }
-
-        protected InvalidWeaponException(SerializationInfo info, StreamingContext context) : base(info, context)
-        {
-        }
+        public InvalidWeaponException() { }
+        public InvalidWeaponException(string message) : base(message) { }
+        public InvalidWeaponException(string message, Exception innerException) : base(message, innerException) { }
+        protected InvalidWeaponException(
+          System.Runtime.Serialization.SerializationInfo info,
+          System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
     }
 }

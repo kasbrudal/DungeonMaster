@@ -4,15 +4,14 @@ namespace DungeonMaster.Equipment
 {
     public partial class Armor : Item
     {
+        public ArmorTypes ArmorType { get; }
+        public TotalAttributes ArmorAttributes { get; }
 
-        public ArmorTypes armorTypes { get; set; }
-        public TotalAttributes armorAttribute { get; set; }
-
-        public Armor(string name, int requiredLevel, ArmorTypes armorTypes, Slot slot, TotalAttributes ArmorAttribute)
+        public Armor(string name, int requiredLevel, Slot slot, ArmorTypes armorType, TotalAttributes armorAttributes)
             : base(name, requiredLevel, slot)
         {
-            ArmorAttribute = armorAttribute;
+            ArmorType = armorType;
+            ArmorAttributes = armorAttributes;
         }
     }
-    
 }

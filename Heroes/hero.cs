@@ -63,7 +63,8 @@ public class Hero
 
         return heroDamage;
     }
-
+    */
+    /*
     public TotalAttributes CalculateTotalAttributes()
     {
         TotalAttributes totalAttributes = new TotalAttributes();
@@ -83,7 +84,7 @@ public class Hero
         }
         return totalAttributes;
     }
-
+    */
 
     public string Display()
     {
@@ -92,17 +93,15 @@ public class Hero
         sb.AppendLine($"Class: {this.GetType().Name}");
         sb.AppendLine($"Level: {Level}");
 
-        HeroAttribute totalAttributes = CalculateTotalAttributes();
-        sb.AppendLine($"Total Strength: {totalAttributes.Strength}");
-        sb.AppendLine($"Total Dexterity: {totalAttributes.Dexterity}");
-        sb.AppendLine($"Total Intelligence: {totalAttributes.Intelligence}");
+        sb.AppendLine($"Total Strength: {LevelAttributes.Strength}");
+        sb.AppendLine($"Total Dexterity: {LevelAttributes.Dexterity}");
+        sb.AppendLine($"Total Intelligence: {LevelAttributes.Intelligence}");
 
-        double damage = CalculateDamage();
-        sb.AppendLine($"Damage: {damage}");
+        return sb.ToString();
     }
 
 
-    */
+    
 
 }
 
