@@ -1,9 +1,14 @@
 ﻿namespace DungeonMaster.Equipment
 {
-    public enum ArmorTypes   
+    public partial class Armor
     {
-        Cloth, 
-        Leather,
-        Mail,
-        Plate
+        public enum ArmorTypes   
+        {
+            Cloth, 
+            Leather,
+            Mail,
+            Plate
+        }
     }
+    
+}

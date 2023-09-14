@@ -1,11 +1,13 @@
 ﻿using System;
+using DungeonMaster.Equipment;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using DungeonMaster.Heroes;
-using DungeonMaster.Equipment;
+using static DungeonMaster.Equipment.Armor;
+
 
 namespace DungeonMaster.Equipment
 {
@@ -25,6 +27,7 @@ namespace DungeonMaster.Equipment
             };
         }
 
+        /*
         public void canEquipWeapon(Weapon weapon)
         {
             if(hero is Wizard && weapon.WeaponTypes!= WeaponTypes.Staff && weapon.WeaponTypes != WeaponTypes.Wand)
@@ -57,7 +60,26 @@ namespace DungeonMaster.Equipment
             {
                 throw new InvalidArmorException("Wizard can only use cloth as armor");
             }
-        }
+            else if (hero is Archer && (armor.ArmorType != ArmorType.Leather && armor.ArmorType != ArmorType.Mail))
+            {
+                throw new InvalidArmorException("Archers can only use leather or mail armor.");
+            }
+            else if (hero is Swashbuckler && (armor.ArmorType != ArmorType.Leather && armor.ArmorType != ArmorType.Mail))
+            {
+                throw new InvalidArmorException("Swashbucklers can only use leather or mail armor.");
+            }
+            else if (hero is Barbarian && (armor.ArmorType != ArmorType.Mail && armor.ArmorType != ArmorType.Plate))
+            {
+                throw new InvalidArmorException("Barbarians can only use mail or plate armor.");
+            }
+
+            if (armor.RequiredLevel > hero.Level)
+            {
+                throw new InvalidArmorException("The armor's level requirement is too high for your hero's level.");
+            }
+
+            equipment[armor.Slot] = armor;
+        }*/
     }
 
     [Serializable]

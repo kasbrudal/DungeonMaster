@@ -14,11 +14,7 @@ public class Barbarian : Hero
         base.LevelUp();
         LevelAttributes.Increase(3, 2, 1);
     }
-    public override void Display()
-    {
-        Console.WriteLine("Barbarian:");
-        base.Display();
-    }
+    
 }
 
 

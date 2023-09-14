@@ -13,11 +13,6 @@ public class Swashbuckler : Hero
         base.LevelUp();
         LevelAttributes.Increase(1, 4, 1);
     }
-    public override void Display()
-    {
-        Console.WriteLine("Swashbuckler:");
-        base.Display();
-    }
 }
 
 

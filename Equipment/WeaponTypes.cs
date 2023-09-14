@@ -1,12 +1,17 @@
 ﻿namespace DungeonMaster.Equipment
 {
-    public enum WeaponTypes
+    public partial class Weapon
     {
-        Hatchet, 
-        Bow,
-        Dagger,
-        Mace,
-        Staff,
-        Sword,
-        Wand
+        public enum WeaponTypes
+        {
+            Hatchet,
+            Bow,
+            Dagger,
+            Mace,
+            Staff,
+            Sword,
+            Wand
+        }
+
     }
+}

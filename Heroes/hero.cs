@@ -2,6 +2,7 @@
 using DungeonMaster.Heroes;
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 public class Hero
 {
@@ -29,6 +30,39 @@ public class Hero
     {
         Equipment.Add(item);
     }
+    /*
+    public double CalculateDamage()
+    {
+        double heroDamage = 0.0;
+
+        if (Equipment.ContainsKey(Slot.Weapon) && Equipment[Slot.Weapon] is Weapon equippedWeapon)
+        {
+            double baseWeaponDamage = equippedWeapon.WeaponDamage;
+
+            int damagingAttribute = 0;
+
+            if (this is Barbarian)
+            {
+                damagingAttribute = CalculateTotalAttributes().Strength;
+            }
+            else if (this is Wizard)
+            {
+                damagingAttribute = CalculateTotalAttributes().Intelligence;
+            }
+            else if (this is Archer || this is Swashbuckler)
+            {
+                damagingAttribute = CalculateTotalAttributes().Dexterity;
+            }
+
+            heroDamage = baseWeaponDamage * (1 + damagingAttribute / 100.0);
+        }
+        else
+        {
+            heroDamage = 1.0;
+        }
+
+        return heroDamage;
+    }
 
     public TotalAttributes CalculateTotalAttributes()
     {
@@ -51,22 +85,24 @@ public class Hero
     }
 
 
-
-
-    public virtual void Display()
+    public string Display()
     {
-        Console.WriteLine($"Name: {Name}");
-        Console.WriteLine($"Level: {Level}");
-        Console.WriteLine($"Attributes:");
-        Console.WriteLine($"Strength: {LevelAttributes.Strength}");
-        Console.WriteLine($"Dexterity: {LevelAttributes.Dexterity}");
-        Console.WriteLine($"Intelligence: {LevelAttributes.Intelligence}");
-        Console.WriteLine($"Equipment:");
-        foreach (var item in Equipment)
-        {
-            Console.WriteLine(item);
-        }
+        StringBuilder sb = new StringBuilder();
+        sb.AppendLine($"Name: {Name}");
+        sb.AppendLine($"Class: {this.GetType().Name}");
+        sb.AppendLine($"Level: {Level}");
+
+        HeroAttribute totalAttributes = CalculateTotalAttributes();
+        sb.AppendLine($"Total Strength: {totalAttributes.Strength}");
+        sb.AppendLine($"Total Dexterity: {totalAttributes.Dexterity}");
+        sb.AppendLine($"Total Intelligence: {totalAttributes.Intelligence}");
+
+        double damage = CalculateDamage();
+        sb.AppendLine($"Damage: {damage}");
     }
+
+
+    */
 
 }
 

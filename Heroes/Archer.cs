@@ -13,11 +13,7 @@ public class Archer : Hero
         base.LevelUp();
         LevelAttributes.Increase(1, 5, 1);
     }
-    public override void Display()
-    {
-        Console.WriteLine("Archer:");
-        base.Display();
-    }
+  
 }
 
 
