@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DungeonMaster.Heroes;
 
 namespace DungeonMaster.Heroes
 {
     public class TotalAttributes
     {
-        public int Strength { get; private set; }
-        public int Dexterity { get; private set; }
-        public int Intelligence { get; private set; }
+        public int Strength { get; set; }
+        public int Dexterity { get; set; }
+        public int Intelligence { get; set; }
 
         public TotalAttributes(int strength, int dexterity, int intelligence)
         {

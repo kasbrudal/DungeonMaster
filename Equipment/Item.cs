@@ -9,14 +9,12 @@ namespace DungeonMaster.Equipment
     public abstract class Item
     {
         public string Name { get; }
-        public Weapon.WeaponTypes WeaponTypes { get; }
         public int RequiredLevel { get; }
         public Slot Slot { get; }
 
-        public Item(string name, Weapon.WeaponTypes weaponTypes, int requiredLevel, Slot slot)
+        public Item(string name, Weapon.WeaponTypes weaponType, int requiredLevel, Slot slot)
         {
             Name = name;
-            WeaponTypes = weaponTypes;
             RequiredLevel = requiredLevel;
             Slot = slot;
         }

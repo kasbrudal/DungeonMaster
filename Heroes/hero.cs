@@ -9,7 +9,7 @@ public class Hero
     public string Name { get; set; }
     public int Level { get; set; }
     public TotalAttributes LevelAttributes { get; set; }
-    public List<string> Equipment { get; set; }
+    public List<Item> Equipment { get; set; }
     public List<string> ValidWeaponTypes { get; protected set; }
     public List<string> ValidArmorTypes { get; protected set; }
 
@@ -18,7 +18,7 @@ public class Hero
         Name = name;
         Level = 1;
         LevelAttributes = new TotalAttributes(0, 0, 0);
-        Equipment = new List<string>();
+        Equipment = new List<Item>();
     }
 
     public virtual void LevelUp()
@@ -26,7 +26,7 @@ public class Hero
         Level++;
     }
 
-    public void Equip(string item)
+    public void Equip(Item item)
     {
         Equipment.Add(item);
     }
@@ -64,27 +64,29 @@ public class Hero
         return heroDamage;
     }
     */
-    /*
+
     public TotalAttributes CalculateTotalAttributes()
     {
-        TotalAttributes totalAttributes = new TotalAttributes();
+        TotalAttributes totalAttributes = new TotalAttributes(0,0,0);
 
         totalAttributes.Strength += LevelAttributes.Strength;
         totalAttributes.Dexterity += LevelAttributes.Dexterity;
         totalAttributes.Intelligence += LevelAttributes.Intelligence;
 
-        foreach(var slot in new[] {Slot.Head, Slot.Body, Slot.Legs})
+        foreach (var equippedItem in Equipment)
         {
-            if(Equipment.ContainsKey(slot) && Equipment[slot] is Armor armor)
+            if (equippedItem is Armor armor)
             {
                 totalAttributes.Strength += armor.ArmorAttributes.Strength;
                 totalAttributes.Dexterity += armor.ArmorAttributes.Dexterity;
                 totalAttributes.Intelligence += armor.ArmorAttributes.Intelligence;
             }
         }
+
         return totalAttributes;
     }
-    */
+
+
 
     public string Display()
     {

@@ -8,7 +8,7 @@
         public Weapon(string name, int requiredLevel, WeaponTypes weaponType, int weaponDamage) :
                         base(name, weaponType, requiredLevel, Slot.Weapon)
         {
-            WeaponType = WeaponType;
+            WeaponType = weaponType;
             WeaponDamage = weaponDamage;
         }
 

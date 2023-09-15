@@ -4,8 +4,9 @@
     {
         public enum WeaponTypes
         {
-            Staff,
+
             Hatchet,
+            Staff,
             Bow,
             Dagger,
             Mace,
