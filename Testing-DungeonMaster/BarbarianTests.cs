@@ -86,5 +86,43 @@ namespace Testing_DungeonMaster
             string actualWeaponMessage = actualWeapon.Message;
             Assert.Equal(expectedWeapon, actualWeaponMessage);
         }
+        [Fact]
+        public void BarbarianEquipInvalidWeapon_Level()
+        {
+            var barbarian = new Barbarian("Conan");
+            var equipment = new Equipment(barbarian);
+            var invalidWeapon = new Weapon("Enchanted Staff", 10, Weapon.WeaponTypes.Staff, 100);
+            string expectedWeaponMessage = "The weapon's level requirement is too high for your hero's level.";
+
+            var actualWeapon = Assert.Throws<InvalidWeaponException>(() => equipment.canEquipWeapon(invalidWeapon));
+            string actualWeaponMessage = actualWeapon.Message;
+            Assert.Equal(expectedWeaponMessage, actualWeaponMessage);
+        }
+
+        [Fact]
+        public void BarbarianEquipValidArmor()
+        {
+            var barbarian = new Barbarian("Aragorn");
+            var equipment = new Equipment(barbarian);
+            var validArmor = new Armor("Plate Mail", 1, Slot.Body, Armor.ArmorTypes.Plate, new TotalAttributes(3, 2, 4));
+
+            equipment.canEquipArmor(validArmor);
+
+            Assert.Equal(validArmor, equipment.GetEquippedArmor(Slot.Body));
+        }
+
+        [Fact]
+        public void BarbarianEquipInvalidArmor_Type()
+        {
+            var barbarian = new Barbarian("Conan");
+            var equipment = new Equipment(barbarian);
+            var invalidArmor = new Armor("Wizard's Robe", 1, Slot.Body, Armor.ArmorTypes.Cloth, new TotalAttributes(1, 2, 3));
+            string expectedArmorMessage = "Barbarians can only use mail or plate armor.";
+
+            var actualArmor = Assert.Throws<InvalidArmorException>(() => equipment.canEquipArmor(invalidArmor));
+            string actualArmorMessage = actualArmor.Message;
+            Assert.Equal(expectedArmorMessage, actualArmorMessage);
+        }
+
     }
 }
