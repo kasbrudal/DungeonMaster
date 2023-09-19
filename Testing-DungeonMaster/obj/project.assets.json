@@ -5525,7 +5525,6 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "C:\\Users\\KBruda\\source\\repos\\DungeonMaster\\DungeonMaster\\DungeonMaster\\DungeonMaster.csproj",
       "DungeonMaster >= 1.0.0",
       "Microsoft.NET.Test.Sdk >= 17.5.0",
       "coverlet.collector >= 3.2.0",
@@ -5560,9 +5559,6 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\KBruda\\source\\repos\\DungeonMaster\\DungeonMaster\\DungeonMaster\\DungeonMaster.csproj": {
-              "projectPath": "C:\\Users\\KBruda\\source\\repos\\DungeonMaster\\DungeonMaster\\DungeonMaster\\DungeonMaster.csproj"
-            },
             "C:\\Users\\KBruda\\source\\repos\\DungeonMaster\\DungeonMaster\\DungeonsMaster\\DungeonMaster.csproj": {
               "projectPath": "C:\\Users\\KBruda\\source\\repos\\DungeonMaster\\DungeonMaster\\DungeonsMaster\\DungeonMaster.csproj"
             }
@@ -5619,16 +5615,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1104",
-      "level": "Error",
-      "message": "Unable to find project 'C:\\Users\\KBruda\\source\\repos\\DungeonMaster\\DungeonMaster\\DungeonMaster\\DungeonMaster.csproj'. Check that the project reference is valid and that the project file exists.",
-      "libraryId": "C:\\Users\\KBruda\\source\\repos\\DungeonMaster\\DungeonMaster\\DungeonMaster\\DungeonMaster.csproj",
-      "targetGraphs": [
-        "net6.0"
-      ]
-    }
-  ]
+  }
 }

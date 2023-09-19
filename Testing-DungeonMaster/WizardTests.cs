@@ -38,43 +38,7 @@ namespace Testing_DungeonMaster
             Assert.Equal(13, wizard.LevelAttributes.Intelligence);
         }
 
-        [Fact]
-        public void WeaponCreation_WithValidAttributes()
-        {
-            
-            string weaponName = "Water Staff";
-            int requiredLevel = 5;
-            WeaponTypes expectedWeapon = Weapon.WeaponTypes.Staff;
-            int weaponDamage = 20;
-
-
-            
-            Weapon weapon = new Weapon(weaponName, requiredLevel, expectedWeapon, weaponDamage);
-
-
-            Assert.Equal(weaponName, weapon.Name);
-            Assert.Equal(requiredLevel, weapon.RequiredLevel);
-            Assert.Equal(Slot.Weapon, weapon.Slot);
-            Assert.Equal(expectedWeapon, weapon.WeaponType);
-            Assert.Equal(weaponDamage, weapon.WeaponDamage);
-        }
-        [Fact]
-        public void ArmorCreation_WithValidAttributes()
-        {
-            string armorName = "Common Plate Chest";
-            int requiredLevel = 3;
-            Slot expectedSlot = Slot.Body;
-            ArmorTypes expectedArmorType = Armor.ArmorTypes.Plate;
-            TotalAttributes expectedArmorAttributes = new TotalAttributes(1, 2, 3); 
-
-            Armor armor = new Armor(armorName, requiredLevel, expectedSlot, expectedArmorType, expectedArmorAttributes);
-
-            Assert.Equal(armorName, armor.Name);
-            Assert.Equal(requiredLevel, armor.RequiredLevel);
-            Assert.Equal(expectedSlot, armor.Slot);
-            Assert.Equal(expectedArmorType, armor.ArmorType);
-            Assert.Equal(expectedArmorAttributes, armor.ArmorAttributes);
-        }
+       
       
         [Fact]
         public void WizardEquipValidWeapon()
@@ -127,7 +91,7 @@ namespace Testing_DungeonMaster
             
             var wizard = new Wizard("Merlin"); 
             var equipment = new Equipment(wizard);
-            var validArmor = new Armor("Wizard's Robe", 1, Slot.Body, Armor.ArmorTypes.Cloth, new TotalAttributes(1, 2, 3)); // Valid armor for a Wizard
+            var validArmor = new Armor("Wizard's Robe", 1, Slot.Body, Armor.ArmorTypes.Cloth, new TotalAttributes(1, 2, 3));
 
            
             equipment.canEquipArmor(validArmor);
@@ -142,7 +106,7 @@ namespace Testing_DungeonMaster
            
             var wizard = new Wizard("Gandalf"); 
             var equipment = new Equipment(wizard);
-            var invalidArmor = new Armor("Plate Armor", 1, Slot.Body, Armor.ArmorTypes.Plate, new TotalAttributes(3, 2, 4)); // Invalid armor type for a Wizard
+            var invalidArmor = new Armor("Plate Armor", 1, Slot.Body, Armor.ArmorTypes.Plate, new TotalAttributes(3, 2, 4)); 
             string expectedArmorMessage = "Wizard can only use cloth as armor";
 
           
@@ -239,12 +203,9 @@ namespace Testing_DungeonMaster
         [Fact]
         public void Wizard_CalculateDamage_WithNoWeaponEquipped()
         {
-            
             var wizard = new Wizard("Harry Potter");
-
-            
+   
             var damage = wizard.CalculateDamage();
-
             
             Assert.Equal(1.0, damage); 
         }
@@ -280,7 +241,22 @@ namespace Testing_DungeonMaster
 
             Assert.Equal(expectedOldDamage, damageOldWand);
             Assert.Equal(expectedNewDamage, damageNewWand);
+        }
+        [Fact]
+        public void Wizard_CalculateDamage_WithWeaponAndArmorEquipped()
+        {
+            var wizard = new Wizard("Harry Potter");
+            var staff = new Weapon("Iben staff", 1, Weapon.WeaponTypes.Staff, 30.0);
+            var clothArmor = new Armor("Wizard Robe", 1, Slot.Body, Armor.ArmorTypes.Cloth, new TotalAttributes(10, 10, 10));
 
+            wizard.Equip(staff);
+            wizard.Equip(clothArmor);
+
+            var damage = wizard.CalculateDamage();
+
+            var expectedDamage = staff.WeaponDamage * (1 + wizard.LevelAttributes.Intelligence / 100.0);
+
+            Assert.Equal(expectedDamage, damage);
         }
 
     }

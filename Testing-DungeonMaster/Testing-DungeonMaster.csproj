@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DungeonMaster\DungeonMaster.csproj" />
+   
     <ProjectReference Include="..\DungeonsMaster\DungeonMaster.csproj" />
   </ItemGroup>
 

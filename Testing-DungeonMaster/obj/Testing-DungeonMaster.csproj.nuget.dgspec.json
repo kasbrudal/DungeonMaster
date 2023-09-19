@@ -83,9 +83,6 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\KBruda\\source\\repos\\DungeonMaster\\DungeonMaster\\DungeonMaster\\DungeonMaster.csproj": {
-                "projectPath": "C:\\Users\\KBruda\\source\\repos\\DungeonMaster\\DungeonMaster\\DungeonMaster\\DungeonMaster.csproj"
-              },
               "C:\\Users\\KBruda\\source\\repos\\DungeonMaster\\DungeonMaster\\DungeonsMaster\\DungeonMaster.csproj": {
                 "projectPath": "C:\\Users\\KBruda\\source\\repos\\DungeonMaster\\DungeonMaster\\DungeonsMaster\\DungeonMaster.csproj"
               }
